@@ -1,12 +1,11 @@
 import React from 'react'
 import FirstNav from '../Components/FirstNav'
-
-const Home = () => {
+const Login = () => {
   return (
     <div>
         <FirstNav/>
-        Home</div>
+        Login</div>
   )
 }
 
-export default Home
+export default Login
