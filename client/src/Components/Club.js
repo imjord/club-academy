@@ -19,13 +19,13 @@ const Club = (props) => {
       <Link to="/clubs">Back to Clubs</Link>
     {club.map(club => <div key={club.club_id}>
     <h3>description</h3>
-    <p>{club.description}</p>
+    <p>{club.club_description}</p>
     <p>Club member Count: NA</p>
     <h3>Club Members</h3>
     <ul>
       <li> need to implement backend </li>
     </ul>
-    <p>club owner: </p>
+    <p>club owner: {club.club_owner_id}</p>
     </div>)}
        
     </div>

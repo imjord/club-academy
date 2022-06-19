@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Clubs = (props) => {
     const { getClubs, loading, clubs } = props;
@@ -8,9 +9,10 @@ const Clubs = (props) => {
     }, [])
 
   return ( loading ? <h1>Loading...</h1> : <div>
+    <Navbar />
     <h1>Current Registered Clubs</h1>
     <ul>
-        {clubs.map(club => <li  key={club.club_id}>{club.name}
+        {clubs.map(club => <li  key={club.club_id}>{club.club_name}
             <Link to={`/clubs/${club.club_id}`}> Club Details</Link>
             </li>
 

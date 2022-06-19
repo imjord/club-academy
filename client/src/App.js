@@ -4,6 +4,7 @@ import Clubs from './Components/Clubs'
 import Navbar from './Components/Navbar'
 import Club from './Components/Club'
 import axios from 'axios'
+import Landing from './pages/Landing'
 
 const App = () => {
   const [clubs, setClubs] = useState([{}]);
@@ -31,7 +32,7 @@ const App = () => {
   return (
     <BrowserRouter>
     <Fragment>
-      <Navbar />
+     
     <Routes>
       <Fragment>
       <Route path="/clubs" element={<Clubs getClubs={getClubs} loading={loading} clubs={clubs} />} />
@@ -39,6 +40,8 @@ const App = () => {
       <Route>
         {/* get single club route */}
         <Route path="/clubs/:id" element={<Club getClub={getClub} loading={loading} club={club} />} />
+       
+        <Route path="/" element={<Landing />} />
       </Route>
       
     </Routes>

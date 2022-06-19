@@ -3,8 +3,22 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE club (
     club_id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    description TEXT NOT NULL
+    club_name VARCHAR(255) NOT NULL,
+    club_description VARCHAR(255) NOT NULL,
+    club_image VARCHAR(255) NOT NULL,
+    club_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    club_owner_id INTEGER NOT NULL,
+    FOREIGN KEY (club_owner_id) REFERENCES user(id),
+    UNIQUE (club_name)
+);
+
+-- create club owner table
+CREATE TABLE club_owner (
+    club_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    PRIMARY KEY (club_id, user_id),
+    FOREIGN KEY (club_id) REFERENCES club (club_id),
+    FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 CREATE TABLE club_member(
