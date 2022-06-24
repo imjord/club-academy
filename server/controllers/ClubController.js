@@ -1,9 +1,9 @@
 const db = require('../db/connection');
-
+const { ensureAuthenticated } = require('../config/auth');
 
 const ClubController = {
     // get all clubs
-    getAllClubs(req,res){
+    getAllClubs (req,res){
         db.query('SELECT * FROM club', (err, results) => {
             if (err) {
                 console.log(err);
@@ -14,7 +14,7 @@ const ClubController = {
         })
     },
     // create a club 
-    createNewClub(req,res){
+    createNewClub  (req,res){
         db.query('INSERT INTO club (club_name, club_description, club_owner_id) VALUES (?,?,?)', [req.body.club_name, req.body.club_description, req.body.club_owner_id], (err, results) => {
             if (err) {
                 console.log(err);

@@ -1,0 +1,29 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.left {
+    font-family: fantasy;
+    font-size: 1.5em;
+    letter-spacing: 5px;
+    color: #000;
+    text-shadow: 1px 5px 5px rgb(74, 168, 235);
+}
+
+.right {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.right li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.right li .link {
+    color: rgb(74, 168, 235);
+    text-decoration: none;
+    font-size: 1.2em;
+}

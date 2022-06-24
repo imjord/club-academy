@@ -1,11 +1,21 @@
 import React from 'react'
 import FirstNav from '../Components/FirstNav'
+import './Home.css';
+import mountain from '../mountain.jpg'
+import tree from '../tree.jpg'
+import cap from '../cap.png'
 
 const Home = () => {
   return (
-    <div>
+    <div className='wrapper'>
         <FirstNav/>
-        Home</div>
+          <div className='images'>
+          <img  src={mountain} className='background'></img>
+          <img   src={cap} className='foreground'></img>
+          </div>
+          
+       
+    </div>
   )
 }
 
