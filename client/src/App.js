@@ -8,6 +8,7 @@ import Landing from './pages/Landing'
 import Register from './pages/Register'
 import Login from './pages/Login' 
 import Home from './pages/Home'
+import CreateClub from './pages/CreateClub'
 
 const App = () => {
   const [clubs, setClubs] = useState([{}]);
@@ -47,7 +48,8 @@ const App = () => {
         {/* get single club route */}
         <Route path="/clubs/:id" element={<Club getClub={getClub} loading={loading} club={club} />} />
 
-        <Route path="/home" element={<Landing />} />
+        <Route path="/homepage" element={<Landing />} />
+        <Route path='/clubs/create' element={<CreateClub/>} />
       </Route>
       
     </Routes>

@@ -42,13 +42,15 @@ const UserController = {
                 return next(err);
             }
             if (!user) {
-                return res.status(401).send(info.message);
+                return res.status(401).send("User not found");
             }
             req.logIn(user, function (err) {
                 if (err) {
                     return next(err);
                 }
-                return res.status(200).send(user);
+                
+                return res.redirect("/homepage");
+
             });
         }   )(req, res, next);
 

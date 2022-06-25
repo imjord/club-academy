@@ -7,7 +7,7 @@ const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 const login = require('./routes/login');
-const homeRoute = require('./routes/home');
+
 
 
 require('./config/passport')(passport);
@@ -29,12 +29,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-console.log('passport', passport);
 
 // routes
+
 app.use('/users',  route);
 app.use('/clubs',  clubRoute);
-app.use('/home',  homeRoute);
 app.use('/login', login);
 
 

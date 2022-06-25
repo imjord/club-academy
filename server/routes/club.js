@@ -8,7 +8,7 @@ const router = require('express').Router();
     
     router.route('/').get(getAllClubs).post(createNewClub);
     // // get single club
-    router.route('/:id').get(ensureAuthenticated, getClubById);
+    router.route('/:id').get(getClubById);
  
    
     // // delete
