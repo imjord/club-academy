@@ -12,13 +12,14 @@ const Home = () => {
         
             <p>Club Academy is a web application that allows users to join clubs or create clubs.</p>
             <p>Created using React, Express, Nodejs, and mySQL</p>
+            <p>This was created to help me get used to mysql and react more. I usually use mongoDB and EJS for my views.</p>
           </section>
           <section className='home-list'>
             <h1>Features</h1>
             <ul>
               <li>Create clubs</li>
-              <li>Join clubs</li>
               <li>View clubs</li>
+              <li>Join clubs W.I.P</li>
               <li>View club members W.I.P.</li>
               <li>View club events W.I.P.</li>
               <li>View club posts W.I.P.</li>

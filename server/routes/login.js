@@ -1,10 +1,14 @@
-const { login } = require('../controllers/UserController');
+
 
 const router = require('express').Router();
 
+const passport = require('passport');
 
 
-router.route('/').post(login);
+router.post('/', passport.authenticate('local', {
+    successRedirect: 'http://localhost:3000/homepage',
+    failureRedirect: 'http://localhost:3000/login'
+  }) )
 
 
 

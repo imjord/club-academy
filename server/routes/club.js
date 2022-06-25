@@ -1,5 +1,4 @@
 const { getAllClubs, createNewClub, getClubById,deleteClub } = require('../controllers/ClubController');
-const {ensureAuthenticated} = require('../config/auth');
 
 const router = require('express').Router();
     // get clubs

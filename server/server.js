@@ -13,16 +13,17 @@ const login = require('./routes/login');
 require('./config/passport')(passport);
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
 
 // express session 
 app.use(
     session({
         secret: 'secret',
-        resave: true,
-        saveUninitialized: true
+        resave: false,
+        saveUninitialized: false
     })
 );
 

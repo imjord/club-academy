@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Form.css';
 
 const LoginForm = (props) => {
-  
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -12,11 +12,14 @@ const LoginForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
        axios.post(props.loginRoute, {
+              
               username: username,
               password: password,
               email: email
        }).then
        (response => {
+            console.log(response);
+
               alert('youre logged in!');
               setUsername("");
               setPassword("");
