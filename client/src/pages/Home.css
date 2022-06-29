@@ -16,7 +16,7 @@ section {
     align-items: center;
     font-size: 2rem;
     padding: 1rem;
-    background-color: rgb(74, 168, 235);
+    background-color: rgba(74, 168, 235, 0.6);
     color: white;
 }
 

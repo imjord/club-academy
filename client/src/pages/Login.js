@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div>
         <FirstNav/>
-        <LoginForm loginRoute="http://localhost:3001/login"/>
+        <LoginForm />
         <Footer />
 
     </div>

@@ -7,7 +7,7 @@ const Register = () => {
   return (
     <div>
         <FirstNav/>
-        <Form registerRoute="http://localhost:3001/users"/>
+        <Form />
         <Footer />
 
     </div>

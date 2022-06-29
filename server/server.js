@@ -10,10 +10,16 @@ const login = require('./routes/login');
 
 
 
-require('./config/passport')(passport);
+
 
 // middleware
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
+require('./config/passport')(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,19 +29,31 @@ app.use(
     session({
         secret: 'secret',
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 3600000,
+            secure: false
+        }
     })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req,res) => {
+    console.log(req.session);
+    res.send('hello');
+
+})
 
 // routes
 
 app.use('/users',  route);
 app.use('/clubs',  clubRoute);
 app.use('/login', login);
+app.use(function(err, req, res, next) {
+    console.log(err);
+});
 
 
 app.listen(PORT, () => {

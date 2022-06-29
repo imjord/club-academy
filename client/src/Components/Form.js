@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import './Form.css';
 
-const Form = (props) => {
+const Form = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Form = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       axios.post(props.registerRoute, {
+       axios.post("http://localhost:3001/users", {
               username: username,
               password: password,
               email: email
@@ -31,7 +31,7 @@ const Form = (props) => {
     }   // end handleSubmit
 
 
-    console.log(props);
+    
   return (
     <div className='form-main'>
       <div className='container'>
@@ -39,7 +39,7 @@ const Form = (props) => {
       
       <h1>Register</h1>
     <div className='form-container'>
-    <form method='POST' action={props.registerRoute}>
+    <form>
         <div>
             <label htmlFor="username">Username:</label>
             <input type="text" id="username" name="username" placeholder='username' onChange={(e) => setUsername(e.target.value)}  />

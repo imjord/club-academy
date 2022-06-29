@@ -19,14 +19,11 @@ module.exports = function (passport) {
             });
         }
     ));
-    passport.serializeUser(function (user, done) {
-        done(null, user.id);
-    }
-    );
-    passport.deserializeUser(function (id, done) {
-        db.query('SELECT * FROM user WHERE id = ?', [id], function (err, results) {
-            done(err, results[0]);
-        });
-    }
-    );
+    passport.serializeUser(function(user, done) {
+        done(null, user);
+      });
+      
+      passport.deserializeUser(function(user, done) {
+        done(null, user);
+      });
 }

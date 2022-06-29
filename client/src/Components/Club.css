@@ -11,7 +11,7 @@
 }
 
 .club-container-2 {
-    background-color: rgb(74, 168, 235);
+    background-color: rgba(74, 168, 235, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;

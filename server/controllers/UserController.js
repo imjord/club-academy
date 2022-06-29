@@ -36,31 +36,31 @@ const UserController = {
     })
     },
     // LOGIN
-    // login(req,res, next){
-
-    //     passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
-    //         res.redirect('/homepage');
-    //     }
-
-
-
-        // passport.authenticate('local', function (err, user, info) {
-        //     if (err) {
-        //         return next(err);
-        //     }
-        //     if (!user) {
-        //         console.log(info)
-        //         return res.status(401).send(info);
-        //     }
-        //     req.logIn(user, function (err) {
-        //         if (err) {
-        //             return next(err);
-        //         }
+    login(req,res, next){
+        passport.authenticate('local', function (err, user, info) {
+            if (err) {
+                return next(err);
+            }
+            if (!user) {
+                console.log(info)
+                return res.status(401).send(info);
+            }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return next(err);
+                }
                 
-        //         return res.redirect("http://localhost:3000/homepage");
+                return res.redirect("/homepage");
 
-        //     });
-        // }   )(req, res, next);
+            });
+        }   )(req, res, next);
+        // passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+        //     res.redirect('/homepage');
+        // }
+    }
+
+
+    
         // passport.authenticate('local', {
         //     successRedirect: 'http://localhost:3000/',
         //     failureRedirect: 'http://localhost:3000/login',

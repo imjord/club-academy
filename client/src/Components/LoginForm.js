@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import './Form.css';
 
-const LoginForm = (props) => {
+const LoginForm = () => {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -11,11 +11,13 @@ const LoginForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       axios.post(props.loginRoute, {
+       axios.post("http://localhost:3001/login", {
               
               username: username,
               password: password,
               email: email
+       }, {
+        withCredentials: true
        }).then
        (response => {
             console.log(response);
@@ -35,7 +37,7 @@ const LoginForm = (props) => {
     }   // end handleSubmit
 
 
-    console.log(props);
+   
   return (
     <div className='form-main'>
       <div className='container'>
@@ -43,7 +45,7 @@ const LoginForm = (props) => {
       
       <h1>Login</h1>
     <div className='form-container'>
-    <form method='POST' action={props.registerRoute}>
+    <form>
         <div>
             <label htmlFor="username">Username:</label>
             <input type="text" id="username" name="username" placeholder='username' onChange={(e) => setUsername(e.target.value)}  />
