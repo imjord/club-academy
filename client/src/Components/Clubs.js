@@ -23,9 +23,9 @@ const Clubs = (props) => {
         )}
     </ul>
             {/* page navigation */}
-    <div className='page-nav'>
+    {/* <div className='page-nav'>
     <Link to='/clubs/page/1'>1</Link>
-    </div>
+    </div> */}
           <button><Link id='btn' to="/clubs/create">Create a club </Link></button>
     </div>
     </div>
