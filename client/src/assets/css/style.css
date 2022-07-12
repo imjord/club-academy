@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #509ff2;
+    padding: 20px;
+}
+
+#left-logo {
+    border: white solid 1px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 30px;
+    
+
+}
+
+#left-logo h1 {
+    color: #509ff2;
+    letter-spacing: 3px;
+}
+
+#right-nav ul li{
+    display: inline-block;
+    margin: 0 10px;
+   
+}
+
+#right-nav ul li:hover {
+    animation: hover 1s ease-in-out infinite;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+}
+
+
+/* welcome */
+.welcome-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.welcome-div-two {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-top: 50px;
+
+    font-size: 30px;
+}
+
+.welcome-div-two div {
+    margin: 20px;
+}
+
+/* end of welcome */
+/* login */
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 30px;
+
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label
+{
+    padding: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #509ff2;
+    border-radius: 10px;
+}
+
+form button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #509ff2;
+    color: white;
+    font-size: 30px;
+}
+/* footer */
+footer {
+    background-color: #509ff2;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+
+@keyframes hover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.04);
+    }
+    100% {
+        transform: scale(1);
+    }
+    
+}

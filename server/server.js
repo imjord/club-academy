@@ -1,61 +1,46 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3001;
-const route = require('./routes/index');
-const clubRoute = require('./routes/club');
 const cors = require('cors');
-const passport = require('passport');
+const PORT = process.env.PORT || 3001;
+const db = require('./config/connection');
+const routes = require('./routes/index');
 const session = require('express-session');
-const login = require('./routes/login');
+const userRoutes = require('./routes/user');
+const passport = require("passport");
+const clubRoutes = require('./routes/club');
+const cookieParser = require("cookie-parser");
 
 
-
-
-
-// middleware
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    credentials: true,
-    optionSuccessStatus: 200
-}
-app.use(cors(corsOptions));
-require('./config/passport')(passport);
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-// express session 
-app.use(
-    session({
-        secret: 'secret',
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 3600000,
-            secure: false
-        }
-    })
-);
+app.use(express.urlencoded({extended: true}));
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
+app.use(session({
+    secret: "mysecret",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}))
+app.use(cookieParser("mysecret"));
 
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport')(passport);
 
-app.get('/', (req,res) => {
-    console.log(req.session);
-    res.send('hello');
 
+app.use("/api", userRoutes);
+app.use("/api/clubs", clubRoutes);
+app.use("/api/users", routes);
+
+
+db.once('open', () => {
+    console.log('db connected to mongodb')
+    app.listen(PORT, () => {
+        console.log('server live');
+    })
+    
 })
-
-// routes
-
-app.use('/users',  route);
-app.use('/clubs',  clubRoute);
-app.use('/login', login);
-app.use(function(err, req, res, next) {
-    console.log(err);
-});
-
-
-app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
-});

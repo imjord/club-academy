@@ -1,11 +1,18 @@
 import React from 'react'
-import './Footer.css';
 
 const Footer = () => {
   return (
-    <div className='footer-container'>
-        <i class="fa-brands fa-github"></i>
-    </div>
+    <footer>
+        <div>
+            <p>&copy; 2020</p>
+        </div>
+        <div>
+            <p>Made with &#10084; </p>
+            <p>
+                imjord
+                </p>
+        </div>
+    </footer>
   )
 }
 

@@ -1,79 +1,72 @@
-const db = require('../db/connection');
-const passport = require('passport');
+const User = require('../models/User');
+
 
 const UserController = {
+
+    // get all users 
     getAllUsers(req,res){
-        db.query('SELECT * FROM user', (err, results) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send(err);
-            } else {
-                res.status(200).send(results);
+        User.find().then(user => {
+            res.json(user)
+        }).catch(err =>{
+            if(err){
+                console.log(err)
+            }
+        })
+    },
+
+    // create a new user 
+    createUser(req,res){
+        const newUser = new User({
+            username: req.body.username, 
+            password: req.body.password
+        })
+
+        newUser.save().then(
+            user => {
+                res.json(user)
+            }
+        ).catch(err => {
+            if(err){
+                console.log(err)
             }
         })
     }, 
-    // GET A SINGLE USER
-    getUser(req,res){
-        db.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, results) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send(err);
-            } else {
-                res.status(200).send(results);
+
+    // update a user
+    updateUser(req,res){
+        User.findOneAndUpdate({_id: req.params.id}, {$set: {username: req.body.username, password: req.body.password}}, {new: true}).then(
+            user => {
+                res.json(user)
+            }
+        ).catch(err => {
+            if(err){
+                console.log(err)
             }
         })
     },
-    createNewUser(req,res){
-        db.query(`INSERT INTO user (username, email, password) VALUES (?,?,?)`, [req.body.username, req.body.email, req.body.password], (err, results) => {
-          
-            if (err) {
-                console.log(err);
-                res.status(500).send(err);
-            } else {
-                res.status(200).send(results);
-            }
 
-    })
+    // delete a user 
+    deleteUser(req,res){
+        User.findOneAndDelete({_id: req.params.id}).then(
+            user => {
+                res.json(user)
+            }
+        ).catch(err => {
+            if(err)throw err;
+        })
+
+
     },
-    // LOGIN
-    login(req,res, next){
-        passport.authenticate('local', function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
-                console.log(info)
-                return res.status(401).send(info);
-            }
-            req.logIn(user, function (err) {
-                if (err) {
-                    return next(err);
-                }
-                
-                return res.redirect("/homepage");
-
-            });
-        }   )(req, res, next);
-        // passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
-        //     res.redirect('/homepage');
-        // }
-    }
+    // updateUser(req,res){
+    //     User.findByIdAndUpdate({_id: req.params.id}, {$set: {username: req.body.username, password: req.body.password}}, {new: true}, (err, docs) =>{
+    //         if(err) throw err;
+    //         else {
+    //             console.log("Updated user: ", docs);
+    //         }
+    //     })
+    // }
 
 
-    
-        // passport.authenticate('local', {
-        //     successRedirect: 'http://localhost:3000/',
-        //     failureRedirect: 'http://localhost:3000/login',
-        //   })(req, res, next);
-        
-    
-      
-
-  
-    
-
-// },
 }
-
 
 module.exports = UserController;

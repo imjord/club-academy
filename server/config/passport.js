@@ -1,29 +1,40 @@
-const LocalStrategy = require('passport-local').Strategy;
-const db = require('../db/connection');
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const localStrategy = require('passport-local').Strategy;
 
+module.exports = function(passport){
 
-module.exports = function (passport) {
-    passport.use(new LocalStrategy(
-        function (username, password, done) {
-            db.query('SELECT * FROM user WHERE username = ?', [username], function (err, results) {
-                if (err) {
-                    return done(err);
-                }
-                if (!results.length) {
-                    return done(null, false);
-                }
-                if (results[0].password !== password) {
-                    return done(null, false);
-                }
-                return done(null, results[0]);
-            });
-        }
-    ));
-    passport.serializeUser(function(user, done) {
-        done(null, user);
-      });
-      
-      passport.deserializeUser(function(user, done) {
-        done(null, user);
-      });
+    passport.use(
+        new localStrategy((username, password, done) => {
+            User.findOne({username: username}, (err, user) => {
+                if(err) throw err;
+                if(!user) return done(null, false);
+                bcrypt.compare(password, user.password, (err, result) => {
+                    if(err) throw err;
+                    if(result === true){
+                        return done(null, user);
+                    } else {
+                        return done(null, false)
+                    }
+                })
+            })
+        })
+    )
+        // stores cookie inside browser  
+        // take user from local strategy 
+    passport.serializeUser((user,cb) => {
+        cb(null, user.id)
+    })
+    // takes cookie and returns user from it
+    passport.deserializeUser((id, cb) => {
+        User.findOne({_id: id}, (err, user) => {
+            const userInfo = {
+                username: user.username,
+                avatar: user.avatar,
+                msg: "You are currently in a session"
+            }
+            cb(err, userInfo);
+        })
+    })
+
 }
